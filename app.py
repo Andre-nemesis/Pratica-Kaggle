@@ -34,6 +34,7 @@ ax2.set_ylabel('Quantidade de Músicas')
 sns.lineplot(x=qtd_artist.values,y=qtd_artist.index, color='b',)
 st.pyplot(fig2)
 
+#Mostrando a qunatidade de músicas por album
 st.header('Quantidade de musicas por album')
 fig3,ax3 = plt.subplots()
 qtd_alb_art = data.loc[:quantidade_albuns,'Album']
@@ -52,7 +53,6 @@ similarity = cosine_similarity(vector)
 
 def similar_song(name):
     texto = ""
-    aux = 0
     name = name.lower()
     indices = data[data['Name'] == name].index[0]
     distances = similarity[indices]
@@ -63,7 +63,6 @@ def similar_song(name):
         artist = data.loc[i[0], 'Artist']
         album = data.loc[i[0],'Album']
         texto += song_name.capitalize() + " " + 'by' + " " + artist + " " + 'album' + " " + '-' + " " + album + "\n"
-        aux += 1
     return texto
 
 texto = similar_song("Imagine - Remastered 2010")
